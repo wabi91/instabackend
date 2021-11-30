@@ -1,0 +1,13 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "plugins": ["prettier"],
+  "extends": ["prettier", "eslint:recommended", "plugin:prettier/recommended"],
+  "rules": {},
+  "parserOptions": {
+    "sourceType": "module"
+  }
+}
