@@ -17,7 +17,8 @@ model User {
   name           String
   location       String
   password       String
-  avatarURL      String
+  bio            String?
+  avatarURL      String?
   githubUsername String
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt

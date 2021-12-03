@@ -5,7 +5,7 @@
   "author": "wabi91 <qlqjsk@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --exec babel-node src/server",
+    "dev": "nodemon --exec babel-node src/server --delay 1",
     "migrate": "npx prisma migrate dev",
     "studio": "npx prisma studio"
   },
@@ -13,12 +13,17 @@
     "@graphql-tools/load-files": "^6.5.2",
     "@graphql-tools/merge": "^8.2.1",
     "@graphql-tools/schema": "^8.3.1",
-    "@prisma/client": "3.5.0",
+    "@prisma/client": "^3.6.0",
     "apollo-server": "^3.5.0",
     "apollo-server-core": "^3.5.0",
+    "apollo-server-express": "^3.5.0",
     "bcrypt": "^5.0.1",
     "dotenv": "^10.0.0",
-    "graphql": "^16.0.1"
+    "express": "^4.17.1",
+    "graphql": "^16.0.1",
+    "graphql-upload": "^13.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
@@ -31,6 +36,6 @@
     "eslint-plugin-prettier": "^4.0.0",
     "nodemon": "^2.0.15",
     "prettier": "^2.5.0",
-    "prisma": "3.5.0"
+    "prisma": "^3.6.0"
   }
 }

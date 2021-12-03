@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN     "bio" TEXT,
+ALTER COLUMN "avatarURL" DROP NOT NULL;

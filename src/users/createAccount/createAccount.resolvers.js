@@ -1,6 +1,6 @@
-import client from '../client';
 import bcrypt from 'bcrypt';
-import { UserInputError } from 'apollo-server-errors';
+
+import client from '../../client';
 
 export default {
   Mutation: {
@@ -20,14 +20,14 @@ export default {
           ],
         },
       });
-      // hash password
       if (existingUser) {
-        throw new UserInputError(
-          `Duplicated user who has same username or email is existed`
-        );
+        return {
+          ok: false,
+          error: 'Duplicated user who has same username or email is existed',
+        };
       }
       const hashPwd = await bcrypt.hash(password, 10);
-      return client.user.create({
+      const user = await client.user.create({
         data: {
           username,
           email,
@@ -38,7 +38,11 @@ export default {
           password: hashPwd,
         },
       });
-      // save and return the user
+
+      return {
+        ok: true,
+        user,
+      };
     },
   },
 };
