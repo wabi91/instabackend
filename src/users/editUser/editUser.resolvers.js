@@ -2,11 +2,11 @@ import fs from 'fs';
 import bcrypt from 'bcrypt';
 
 import client from '../../client';
-import { protectResolver } from '../users.utils';
+import { protectedResolver } from '../users.utils';
 
 export default {
   Mutation: {
-    editUser: protectResolver(
+    editUser: protectedResolver(
       async (
         _,
         {

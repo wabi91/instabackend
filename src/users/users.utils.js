@@ -13,7 +13,7 @@ export const getUser = async (token) => {
   }
 };
 
-export const protectResolver =
+export const protectedResolver =
   (originResolver) => (root, args, context, info) => {
     if (!context.loggedInUser) {
       return {

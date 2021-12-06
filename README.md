@@ -11,8 +11,9 @@
 - [x] Login
 - [x] Edit Profile
 - [x] Change Avatar (Image Upload)
-- [ ] Follow User
-- [ ] Unfollow User
-- [ ] Search Users
-- [ ] See Followers
-- [ ] See Following
+- [x] Follow User
+- [x] Unfollow User
+- [x] See Follwers w/ pageination
+- [x] See Following w/ pageination
+- [x] Computed Fields
+- [x] Search Users
