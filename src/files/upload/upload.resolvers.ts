@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { GraphQLUpload } from 'graphql-upload';
 import { finished } from 'stream/promises';
 import { createWriteStream } from 'fs';
@@ -20,11 +21,14 @@ const resolvers: Resolvers = {
 
       // This is purely for demonstration purposes and will overwrite the
       // local-file-output.txt in the current working directory on EACH upload.
-      const out = createWriteStream('local-file-output.txt');
-      stream.pipe(out);
-      await finished(out);
+      // const out = createWriteStream('local-file-output.txt');
+      // stream.pipe(out);
+      // await finished(out);
 
-      return { filename, mimetype, encoding };
+      // return { filename, mimetype, encoding };
+
+      // Promisify the stream and store the file, then…
+      return true;
     },
   },
 };

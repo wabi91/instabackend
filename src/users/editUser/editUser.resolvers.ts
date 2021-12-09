@@ -1,4 +1,4 @@
-import fs from 'fs';
+// import fs from 'fs';
 import bcrypt from 'bcrypt';
 
 import client from '../../client';
@@ -24,14 +24,14 @@ const resolvers: Resolvers = {
       ) => {
         let avatar;
         if (uploadFile) {
-          const { filename, createReadStream } = await uploadFile;
-          const readStream = createReadStream();
-          const newFilename = `${loggedInUser.id}-${Date.now()}-${filename}`;
-          const writeStream = fs.createWriteStream(
-            `${process.cwd()}/uploads/${newFilename}`
-          );
-          readStream.pipe(writeStream);
-          avatar = `http://localhost:${process.env.PORT}/static/${newFilename}`;
+          // const { filename, createReadStream } = await uploadFile;
+          // const readStream = createReadStream();
+          // const newFilename = `${loggedInUser.id}-${Date.now()}-${filename}`;
+          // const writeStream = fs.createWriteStream(
+          //   `${process.cwd()}/uploads/${newFilename}`
+          // );
+          // readStream.pipe(writeStream);
+          // avatar = `http://localhost:${process.env.PORT}/static/${newFilename}`;
         }
 
         let password;
