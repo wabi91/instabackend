@@ -4,7 +4,7 @@
 - Prisma
 - Apollo
 
-## User:
+## User
 
 - [x] Create Account
 - [x] See Profile
@@ -17,3 +17,14 @@
 - [x] See Following w/ pageination
 - [x] Computed Fields
 - [x] Search Users
+
+## Photos
+
+- [ ] Upload Photo (Parse #)
+- [ ] See Photo
+- [ ] See Hashtags
+- [ ] Search Photos
+- [ ] Edit Photo
+- [ ] Like / Unlike Photo
+- [ ] See Photo Likes
+- [ ] See Feed

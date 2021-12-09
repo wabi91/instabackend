@@ -7,7 +7,7 @@ const resolvers: Resolvers = {
   Mutation: {
     createAccount: async (
       _,
-      { username, email, name, location, avatarURL, githubUsername, password }
+      { username, email, name, location, avatar, githubUsername, password }
     ) => {
       const existingUser = await client.user.findFirst({
         where: {
@@ -34,7 +34,7 @@ const resolvers: Resolvers = {
           email,
           name,
           location,
-          avatarURL,
+          avatar,
           githubUsername,
           password: hashPwd,
         },

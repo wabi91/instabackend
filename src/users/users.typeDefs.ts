@@ -8,7 +8,7 @@ export default gql`
     name: String!
     location: String!
     bio: String
-    avatarURL: String
+    avatar: String
     following: [User]
     followers: [User]
     totalFollowing: Int!

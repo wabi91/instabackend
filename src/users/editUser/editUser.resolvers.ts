@@ -16,13 +16,13 @@ const resolvers: Resolvers = {
           name,
           location,
           bio,
-          avatarURL: uploadFile,
+          avatar: uploadFile,
           githubUsername,
           password: newPassword,
         },
         { loggedInUser }
       ) => {
-        let avatarURL;
+        let avatar;
         if (uploadFile) {
           const { filename, createReadStream } = await uploadFile;
           const readStream = createReadStream();
@@ -31,7 +31,7 @@ const resolvers: Resolvers = {
             `${process.cwd()}/uploads/${newFilename}`
           );
           readStream.pipe(writeStream);
-          avatarURL = `http://localhost:${process.env.PORT}/static/${newFilename}`;
+          avatar = `http://localhost:${process.env.PORT}/static/${newFilename}`;
         }
 
         let password;
@@ -48,7 +48,7 @@ const resolvers: Resolvers = {
               name,
               location,
               bio,
-              avatarURL,
+              avatar,
               githubUsername,
               password,
             },
