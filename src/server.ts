@@ -29,6 +29,7 @@ const PORT = process.env.PORT;
   const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
+    introspection: true,
     plugins: [
       ApolloServerPluginDrainHttpServer({ httpServer }),
       ApolloServerPluginLandingPageGraphQLPlayground(),
