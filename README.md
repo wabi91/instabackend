@@ -20,11 +20,11 @@
 
 ## Photos
 
-- [ ] Upload Photo (Parse #)
-- [ ] See Photo
-- [ ] See Hashtags
-- [ ] Search Photos
-- [ ] Edit Photo
-- [ ] Like / Unlike Photo
+- [x] Upload Photo (Parse #)
+- [x] See Photo
+- [x] See Hashtags
+- [x] Search Photos
+- [x] Edit Photo
+- [x] Like / Unlike Photo (toggle)
 - [ ] See Photo Likes
 - [ ] See Feed

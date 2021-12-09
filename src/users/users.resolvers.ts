@@ -41,6 +41,21 @@ const resolvers: Resolvers = {
 
       return Boolean(following);
     },
+    followers: ({ id }, { page = 1 }) =>
+      client.user.findUnique({ where: { id } }).followers({
+        take: 5,
+        skip: (page - 1) * 5,
+      }),
+    following: ({ id }, { page = 1 }) =>
+      client.user.findUnique({ where: { id } }).following({
+        take: 5,
+        skip: (page - 1) * 5,
+      }),
+    photos: ({ id }, { page = 1 }) =>
+      client.user.findUnique({ where: { id } }).photos({
+        take: 5,
+        skip: (page - 1) * 5,
+      }),
   },
 };
 

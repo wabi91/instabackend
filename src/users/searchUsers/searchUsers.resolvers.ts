@@ -4,23 +4,19 @@ import { Resolvers } from '../../types';
 const resolvers: Resolvers = {
   Query: {
     searchUsers: async (_, { keyword, page = 1 }) => {
-      const users = await client.user.findMany({
-        where: {
-          username: {
-            startsWith: keyword.toLowerCase(),
-          },
+      const where = {
+        username: {
+          contains: keyword.toLowerCase(),
         },
+      };
+
+      const users = await client.user.findMany({
+        where,
         take: 5,
         skip: (page - 1) * 5,
       });
 
-      const total = await client.user.count({
-        where: {
-          username: {
-            startsWith: keyword.toLowerCase(),
-          },
-        },
-      });
+      const total = await client.user.count({ where });
 
       return {
         users,

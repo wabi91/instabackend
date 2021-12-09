@@ -9,8 +9,9 @@ export default gql`
     location: String!
     bio: String
     avatar: String
-    following: [User]
-    followers: [User]
+    following(page: Int): [User]
+    followers(page: Int): [User]
+    photos(page: Int): [Photo]
     totalFollowing: Int!
     totalFollowers: Int!
     isMe: Boolean!
