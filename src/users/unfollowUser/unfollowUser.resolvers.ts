@@ -1,7 +1,8 @@
 import client from '../../client';
 import { protectedResolver } from '../users.utils';
+import { Resolvers } from '../../types';
 
-export default {
+const resolvers: Resolvers = {
   Mutation: {
     unfollowUser: protectedResolver(
       async (_, { username }, { loggedInUser }) => {
@@ -42,3 +43,5 @@ export default {
     ),
   },
 };
+
+export default resolvers;

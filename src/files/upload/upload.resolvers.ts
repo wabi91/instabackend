@@ -1,13 +1,17 @@
 import { GraphQLUpload } from 'graphql-upload';
 import { finished } from 'stream/promises';
+import { createWriteStream } from 'fs';
+import { Resolvers } from '../../types';
 
-export default {
+const resolvers: Resolvers = {
   // This maps the `Upload` scalar to the implementation provided
   // by the `graphql-upload` package.
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   Upload: GraphQLUpload,
 
   Mutation: {
-    singleUpload: async (parent, { file }) => {
+    singleUpload: async (_, { file }) => {
       const { createReadStream, filename, mimetype, encoding } = await file;
 
       // Invoking the `createReadStream` will return a Readable Stream.
@@ -16,7 +20,7 @@ export default {
 
       // This is purely for demonstration purposes and will overwrite the
       // local-file-output.txt in the current working directory on EACH upload.
-      const out = require('fs').createWriteStream('local-file-output.txt');
+      const out = createWriteStream('local-file-output.txt');
       stream.pipe(out);
       await finished(out);
 
@@ -24,3 +28,5 @@ export default {
     },
   },
 };
+
+export default resolvers;

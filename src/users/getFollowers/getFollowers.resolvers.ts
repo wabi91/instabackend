@@ -1,8 +1,9 @@
 import client from '../../client';
+import { Resolvers } from '../../types';
 
-export default {
+const resolvers: Resolvers = {
   Query: {
-    getFollowing: async (_, { username, lastId }) => {
+    getFollowers: async (_, { username, lastId }) => {
       const ok = await client.user.findUnique({
         where: { username },
         select: { id: true },
@@ -14,11 +15,11 @@ export default {
         };
       }
 
-      const following = await client.user
+      const followers = await client.user
         .findUnique({
           where: { username },
         })
-        .following({
+        .followers({
           take: 5,
           skip: lastId ? 1 : 0,
           ...(lastId && { cursor: { id: lastId } }),
@@ -26,7 +27,7 @@ export default {
 
       const count = await client.user.count({
         where: {
-          followers: {
+          following: {
             some: {
               username,
             },
@@ -36,9 +37,11 @@ export default {
 
       return {
         count,
-        following,
+        followers,
         ok: true,
       };
     },
   },
 };
+
+export default resolvers;

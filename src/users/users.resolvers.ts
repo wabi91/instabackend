@@ -1,6 +1,7 @@
 import client from '../client';
+import { Resolvers } from '../types';
 
-export default {
+const resolvers: Resolvers = {
   User: {
     totalFollowing: ({ id }) =>
       client.user.count({
@@ -42,3 +43,5 @@ export default {
     },
   },
 };
+
+export default resolvers;

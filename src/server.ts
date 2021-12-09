@@ -1,7 +1,7 @@
-import dotenv from 'dotenv';
 import express from 'express';
 import http from 'http';
 import logger from 'morgan';
+import * as dotenv from 'dotenv';
 import { ApolloServer } from 'apollo-server-express';
 import {
   ApolloServerPluginDrainHttpServer,
@@ -11,10 +11,11 @@ import { graphqlUploadExpress } from 'graphql-upload';
 
 import { typeDefs, resolvers } from './schema';
 import { getUser } from './users/users.utils';
+import client from './client';
 
 dotenv.config();
 
-const POST = process.env.PORT;
+const PORT = process.env.PORT;
 
 (async function startServer() {
   const app = express();
@@ -34,7 +35,8 @@ const POST = process.env.PORT;
     ],
     context: async ({ req }) => {
       return {
-        loggedInUser: await getUser(req.headers.authorization),
+        client,
+        loggedInUser: await getUser(req.headers.authorization ?? ''),
       };
     },
   });
@@ -51,9 +53,9 @@ const POST = process.env.PORT;
      */
     // path: '/',
   });
-  await new Promise((resolve) => httpServer.listen({ port: POST }, resolve));
-
-  console.log(
-    `🚀 Server ready at http://localhost:${POST}${apolloServer.graphqlPath}`
+  httpServer.listen({ port: PORT }, (): void =>
+    console.log(
+      `🚀 Server ready at http://localhost:${PORT}${apolloServer.graphqlPath}`
+    )
   );
 })();

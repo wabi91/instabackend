@@ -1,10 +1,13 @@
 import jwt from 'jsonwebtoken';
 import client from '../client';
+import { Resolver, ProtectedResolver, NonNullContext } from '../types';
 
-export const getUser = async (token) => {
+export const getUser = async (token: string) => {
   if (!token) return null;
   try {
-    const { id } = await jwt.verify(token, process.env.SECRET_KEY);
+    const { id } = jwt.verify(token, process.env.SECRET_KEY as string) as {
+      id: number;
+    };
     const user = client.user.findUnique({ where: { id } });
     if (!user) return null;
     return user;
@@ -14,12 +17,13 @@ export const getUser = async (token) => {
 };
 
 export const protectedResolver =
-  (originResolver) => (root, args, context, info) => {
+  (originResolver: ProtectedResolver): Resolver =>
+  (root, args, context, info) => {
     if (!context.loggedInUser) {
       return {
         ok: false,
         error: 'Please log in to perform this action.',
       };
     }
-    return originResolver(root, args, context, info);
+    return originResolver(root, args, context as NonNullContext, info);
   };

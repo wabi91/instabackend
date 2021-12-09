@@ -3,8 +3,9 @@ import bcrypt from 'bcrypt';
 
 import client from '../../client';
 import { protectedResolver } from '../users.utils';
+import { Resolvers } from '../../types';
 
-export default {
+const resolvers: Resolvers = {
   Mutation: {
     editUser: protectedResolver(
       async (
@@ -66,3 +67,5 @@ export default {
     ),
   },
 };
+
+export default resolvers;

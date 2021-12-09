@@ -1,8 +1,8 @@
-import client from '../../client';
+import { Resolvers } from '../../types';
 
-export default {
+const resolvers: Resolvers = {
   Query: {
-    getUsers: async (_, { page = 1 }) => {
+    getUsers: async (_, { page = 1 }, { client }) => {
       const users = await client.user.findMany({
         include: {
           following: {
@@ -24,7 +24,7 @@ export default {
         totalPage: Math.ceil(total / 5),
       };
     },
-    getUser: (_, args) => {
+    getUser: (_, args, { client }) => {
       const where = Object.keys(args).reduce((acc, key) => {
         const val = args[key];
         if (!val) return acc;
@@ -41,3 +41,5 @@ export default {
     },
   },
 };
+
+export default resolvers;
